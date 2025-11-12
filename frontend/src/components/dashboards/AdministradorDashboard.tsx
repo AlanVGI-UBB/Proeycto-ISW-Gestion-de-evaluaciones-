@@ -12,10 +12,10 @@ const AdministradorDashboard = ({ user }: AdministradorDashboardProps) => {
       <Header title="Facultad de Derecho - Panel de Administración" />
 
       {/* Background azul que se extiende */}
-      <div className="bg-[#003366] h-40"></div>
+      <div className="bg-[#003366] h-60 rounded-b-lg"></div>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-6 -mt-24 pb-24">
+      <main className="max-w-6xl mx-auto px-6 -mt-36 pb-24">
         {/* Welcome Section */}
         <div className="mb-6 text-white">
           <h2 className="text-3xl font-bold">Bienvenido(a), {user.name}</h2>
