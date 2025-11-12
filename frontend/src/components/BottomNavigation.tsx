@@ -27,7 +27,7 @@ const BottomNavigation = () => {
       return [
         ...baseItems,
         {
-          path: '/evaluaciones',
+          path: '/Evaluaciones',
           label: 'Evaluaciones',
           icon: (
             <svg className="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -36,7 +36,7 @@ const BottomNavigation = () => {
           ),
         },
         {
-          path: '/simulacion',
+          path: '/Simulation',
           label: 'Simulación',
           icon: (
             <svg className="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
