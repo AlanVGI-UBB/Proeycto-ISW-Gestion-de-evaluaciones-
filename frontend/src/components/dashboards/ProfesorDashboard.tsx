@@ -1,4 +1,5 @@
 import { User } from '../../types/auth.types';
+import Header from '../Header.tsx';
 
 interface ProfesorDashboardProps {
   user: User;
@@ -7,25 +8,17 @@ interface ProfesorDashboardProps {
 const ProfesorDashboard = ({ user }: ProfesorDashboardProps) => {
   return (
     <>
-      {/* Header */}
-      <header className="bg-[#003366] text-white py-6 px-6">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center">
-            <div className="w-8 h-8 bg-white mr-3 rounded"></div>
-            <h1 className="text-xl font-semibold">Facultad de Derecho</h1>
-          </div>
-          <div className="flex items-center gap-4">
-            <div className="w-10 h-10 bg-pink-200 rounded-full"></div>
-          </div>
-        </div>
-      </header>
+      <Header />
+
+      {/* Background azul que se extiende */}
+      <div className="bg-[#003366] h-40"></div>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-6 py-8">
+      <main className="max-w-7xl mx-auto px-6 -mt-24 pb-24">
         {/* Welcome Section */}
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-800">Bienvenido(a), {user.name}</h2>
-          <p className="text-gray-600 mt-1">Rol: {user.role}</p>
+        <div className="mb-6 text-white">
+          <h2 className="text-3xl font-bold">Bienvenido(a), {user.name}</h2>
+          <p className="mt-1 text-white/80">Rol: {user.role}</p>
         </div>
 
         {/* Comisiones a Evaluar */}
@@ -87,31 +80,6 @@ const ProfesorDashboard = ({ user }: ProfesorDashboardProps) => {
             </div>
           </div>
         </div>
-
-        {/* Estudiantes Destacados */}
-        <div className="bg-white rounded-lg shadow-md p-6">
-          <h3 className="text-xl font-bold text-gray-800 mb-4">Estudiantes Destacados Este Mes</h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="p-4 border border-gray-200 rounded-lg text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full mx-auto mb-3"></div>
-              <h4 className="font-semibold text-gray-800">Juan Pérez</h4>
-              <p className="text-sm text-gray-600">Promedio: 9.8</p>
-            </div>
-            
-            <div className="p-4 border border-gray-200 rounded-lg text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-gray-300 to-gray-400 rounded-full mx-auto mb-3"></div>
-              <h4 className="font-semibold text-gray-800">María González</h4>
-              <p className="text-sm text-gray-600">Promedio: 9.5</p>
-            </div>
-            
-            <div className="p-4 border border-gray-200 rounded-lg text-center">
-              <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-red-500 rounded-full mx-auto mb-3"></div>
-              <h4 className="font-semibold text-gray-800">Carlos Ramírez</h4>
-              <p className="text-sm text-gray-600">Promedio: 9.2</p>
-            </div>
-          </div>
-        </div>
       </main>
 
       {/* Bottom Navigation */}
@@ -137,13 +105,6 @@ const ProfesorDashboard = ({ user }: ProfesorDashboardProps) => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
               </svg>
               <span className="text-xs">Estudiantes</span>
-            </button>
-            
-            <button className="flex flex-col items-center text-gray-500">
-              <svg className="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-              </svg>
-              <span className="text-xs">Estadísticas</span>
             </button>
           </div>
         </div>
