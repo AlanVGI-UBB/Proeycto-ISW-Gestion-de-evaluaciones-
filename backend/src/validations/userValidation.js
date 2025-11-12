@@ -1,13 +1,6 @@
 import Joi from 'joi';
 
 export const registerValidation = Joi.object({
-    email: Joi.string()
-        .email()
-        .required()
-        .messages({
-            'string.email': 'El correo electrónico debe ser válido',
-            'any.required': 'El correo electrónico es obligatorio',
-        }),
     password: Joi.string()
         .min(6)
         .required()
@@ -37,15 +30,21 @@ export const registerValidation = Joi.object({
         .messages({
             'any.only': 'El rol debe ser: estudiante, profesor o admin',
         }),
+    rut: Joi.string()
+        .required()
+        .pattern(/^[0-9]+-[0-9kK]$/)
+        .messages({
+            'string.pattern.base': 'El RUT debe tener el formato: solo números, un guion y el dígito verificador (número o k/K). No se permiten puntos ni espacios.',
+            'any.required': 'El rut es obligatorio',
+        }),
 });
 
 export const loginValidation = Joi.object({
-    email: Joi.string()
-        .email()
+    rut: Joi.string()
         .required()
         .messages({
-            'string.email': 'El correo electrónico debe ser válido',
-            'any.required': 'El correo electrónico es obligatorio',
+            'string.rut': 'El rut debe ser válido',
+            'any.required': 'El rut es obligatorio',
         }),
     password: Joi.string()
         .required()
