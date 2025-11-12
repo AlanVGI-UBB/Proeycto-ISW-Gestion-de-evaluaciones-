@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { AuthProvider } from './context/AuthContext';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
-/*import Evaluaciones from './pages/Evaluaciones';
 import Configuracion from './pages/Configuracion';
+/*import Evaluaciones from './pages/Evaluaciones';
 import { authService } from './services/authService';*/
 
 // Componente para rutas protegidas
@@ -35,21 +35,12 @@ function App() {
             } 
           />
 
-          {/* Rutas Protegidas - Comentadas temporalmente */}
-          {
+          {/* Rutas Protegidas */}
           <Route 
             path="/dashboard" 
             element={
               <ProtectedRoute>
                 <Dashboard />
-              </ProtectedRoute>
-            } 
-          />
-          /*<Route 
-            path="/evaluaciones" 
-            element={
-              <ProtectedRoute>
-                <Evaluaciones />
               </ProtectedRoute>
             } 
           />
@@ -61,7 +52,14 @@ function App() {
               </ProtectedRoute>
             } 
           />
-          */}
+          {/*<Route 
+            path="/evaluaciones" 
+            element={
+              <ProtectedRoute>
+                <Evaluaciones />
+              </ProtectedRoute>
+            } 
+          />*/}
 
           {/* Ruta por defecto */}
           <Route path="*" element={<Navigate to="/" />} />
