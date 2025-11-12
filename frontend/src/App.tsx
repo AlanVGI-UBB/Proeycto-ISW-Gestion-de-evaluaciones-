@@ -1,12 +1,12 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Login from './pages/Login.tsx';
+import { AuthProvider } from './context/AuthContext';
+import Login from './pages/Login';
 /*import Dashboard from './pages/Dashboard';
 import Evaluaciones from './pages/Evaluaciones';
 import Configuracion from './pages/Configuracion';
 import { authService } from './services/authService';*/
 
 // Componente para rutas protegidas
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   // Temporalmente comentado hasta que tengas authService
   // return authService.isAuthenticated() ? children : <Navigate to="/" />;
@@ -22,50 +22,52 @@ const PublicRoute = ({ children }: { children: React.ReactNode }) => {
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        {/* Rutas Públicas */}
-        <Route 
-          path="/" // Ruta de login 
-          element={
-            <PublicRoute>
-              <Login />
-            </PublicRoute>
-          } 
-        />
+    <AuthProvider>
+      <Router>
+        <Routes>
+          {/* Rutas Públicas */}
+          <Route 
+            path="/" 
+            element={
+              <PublicRoute>
+                <Login />
+              </PublicRoute>
+            } 
+          />
 
-        {/* Rutas Protegidas - Comentadas temporalmente */}
-        {/*
-        <Route 
-          path="/dashboard" 
-          element={
-            <ProtectedRoute>
-              <Dashboard />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/evaluaciones" 
-          element={
-            <ProtectedRoute>
-              <Evaluaciones />
-            </ProtectedRoute>
-          } 
-        />
-        <Route 
-          path="/configuracion" 
-          element={
-            <ProtectedRoute>
-              <Configuracion />
-            </ProtectedRoute>
-          } 
-        />
-        */}
+          {/* Rutas Protegidas - Comentadas temporalmente */}
+          {/*
+          <Route 
+            path="/dashboard" 
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/evaluaciones" 
+            element={
+              <ProtectedRoute>
+                <Evaluaciones />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/configuracion" 
+            element={
+              <ProtectedRoute>
+                <Configuracion />
+              </ProtectedRoute>
+            } 
+          />
+          */}
 
-        {/* Ruta por defecto */}
-        <Route path="*" element={<Navigate to="/" />} />
-      </Routes>
-    </Router>
+          {/* Ruta por defecto */}
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 
