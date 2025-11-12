@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import { initializeDatabase } from './src/config/database.js';
 import routes from './src/routes/index.js';
 
 // Configurar variables de entorno
@@ -28,19 +29,12 @@ app.use('/api', routes);
 
 // Ruta raíz
 app.get('/', (req, res) => {
-    res.json({
-        success: true,
-        message: 'Bienvenido al Sistema de Evaluaciones Orales - Facultad de Derecho',
-        version: '1.0.0',
-    });
+    res.send('API de Gestión de Evaluaciones Orales');
 });
 
 // Manejo de rutas no encontradas
-app.use('*', (req, res) => {
-    res.status(404).json({
-        success: false,
-        message: 'Ruta no encontrada',
-    });
+app.use(cors(), (req, res) => {
+    res.sendStatus(404);
 });
 
 // Manejo global de errores
@@ -61,9 +55,8 @@ const startServer = async () => {
 
         // Iniciar servidor
         app.listen(PORT, () => {
-            console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
-            console.log(`📚 Documentación API: http://localhost:${PORT}/api/health`);
-            console.log(`🌍 Ambiente: ${process.env.NODE_ENV}`);
+            console.log(`Servidor corriendo en http://localhost:${PORT}`);
+            console.log(`Ambiente: ${process.env.NODE_ENV}`);
         });
     } catch (error) {
         console.error('❌ Error al iniciar el servidor:', error);
