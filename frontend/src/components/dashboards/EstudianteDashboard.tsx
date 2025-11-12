@@ -1,4 +1,5 @@
 import { User } from '../../types/auth.types';
+import Header from '../Header.tsx';
 
 interface EstudianteDashboardProps {
   user: User;
@@ -7,25 +8,17 @@ interface EstudianteDashboardProps {
 const EstudianteDashboard = ({ user }: EstudianteDashboardProps) => {
   return (
     <>
-      {/* Header */}
-      <header className="bg-[#003366] text-white py-6 px-6">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <div className="flex items-center">
-            <div className="w-8 h-8 bg-white mr-3 rounded"></div>
-            <h1 className="text-xl font-semibold">Facultad de Derecho</h1>
-          </div>
-          <div className="flex items-center gap-4">
-            <div className="w-10 h-10 bg-pink-200 rounded-full"></div>
-          </div>
-        </div>
-      </header>
+      <Header />
+
+      {/* Background azul que se extiende */}
+      <div className="bg-[#003366] h-40"></div>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-6 py-8">
+      <main className="max-w-7xl mx-auto px-6 -mt-24 pb-24">
         {/* Welcome Section */}
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-800">Bienvenido(a), {user.name}</h2>
-          <p className="text-gray-600 mt-1">Rol: {user.role}</p>
+        <div className="mb-6 text-white">
+          <h2 className="text-3xl font-bold">Bienvenido(a), {user.name}</h2>
+          <p className="mt-1 text-white/80">Rol: {user.role}</p>
         </div>
 
         {/* Comisiones Próximas */}
@@ -142,21 +135,6 @@ const EstudianteDashboard = ({ user }: EstudianteDashboardProps) => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
               </svg>
               <span className="text-xs">Simulación</span>
-            </button>
-            
-            <button className="flex flex-col items-center text-gray-500">
-              <svg className="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              <span className="text-xs">Configuración</span>
-            </button>
-            
-            <button className="flex flex-col items-center text-gray-500">
-              <svg className="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" />
-              </svg>
-              <span className="text-xs">Más</span>
             </button>
           </div>
         </div>
