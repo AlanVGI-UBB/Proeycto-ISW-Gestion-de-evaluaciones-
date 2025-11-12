@@ -1,6 +1,7 @@
 import { User } from '../../types/auth.types';
 import Header from '../Header.tsx';
 import BottomNavigation from '../BottomNavigation';
+import { Link } from 'react-router-dom';
 
 interface ProfesorDashboardProps {
   user: User;
@@ -78,6 +79,25 @@ const ProfesorDashboard = ({ user }: ProfesorDashboardProps) => {
               <button className="px-4 py-2 bg-[#003366] text-white rounded-lg hover:bg-[#004488] transition text-sm">
                 Ver ahora
               </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Realizar Evaluaciones */}
+        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+          <h3 className="text-xl font-bold text-gray-800 mb-4">Realizar Evaluaciones</h3>
+
+          <div className="space-y-3">
+            <div className="flex items-center justify-between p-4 bg-indigo-50 border border-indigo-200 rounded-lg">
+              <div className="flex items-center gap-3">
+                <svg className="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <span className="text-gray-800 font-medium">Evalúa a los estudiantes según los criterios establecidos</span>
+              </div>
+              <Link to="/RealizarEvaluacion" className="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition text-sm font-semibold">
+                Ir a Evaluación
+              </Link>
             </div>
           </div>
         </div>
