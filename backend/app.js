@@ -55,8 +55,9 @@ const startServer = async () => {
 
         // Iniciar servidor
         app.listen(PORT, () => {
-            console.log(`Servidor corriendo en http://localhost:${PORT}`);
-            console.log(`Ambiente: ${process.env.NODE_ENV}`);
+            console.log(`🚀 Servidor corriendo en http://localhost:${PORT}`);
+            console.log(`📚 Documentación API: http://localhost:${PORT}/api/health`);
+            console.log(`🌍 Ambiente: ${process.env.NODE_ENV}`);
         });
     } catch (error) {
         console.error('❌ Error al iniciar el servidor:', error);
