@@ -26,7 +26,7 @@ function App() {
       <Routes>
         {/* Rutas Públicas */}
         <Route 
-          path="/" 
+          path="/" // Ruta de login 
           element={
             <PublicRoute>
               <Login />
