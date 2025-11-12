@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import Login from './pages/Login';
-/*import Dashboard from './pages/Dashboard';
-import Evaluaciones from './pages/Evaluaciones';
+import Dashboard from './pages/Dashboard';
+/*import Evaluaciones from './pages/Evaluaciones';
 import Configuracion from './pages/Configuracion';
 import { authService } from './services/authService';*/
 
@@ -36,7 +36,7 @@ function App() {
           />
 
           {/* Rutas Protegidas - Comentadas temporalmente */}
-          {/*
+          {
           <Route 
             path="/dashboard" 
             element={
@@ -45,7 +45,7 @@ function App() {
               </ProtectedRoute>
             } 
           />
-          <Route 
+          /*<Route 
             path="/evaluaciones" 
             element={
               <ProtectedRoute>
