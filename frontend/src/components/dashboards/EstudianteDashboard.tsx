@@ -13,10 +13,10 @@ const EstudianteDashboard = ({ user }: EstudianteDashboardProps) => {
       <Header />
 
       {/* Background azul que se extiende */}
-      <div className="bg-[#003366] h-40"></div>
+      <div className="bg-[#003366] h-60 rounded-b-lg"></div>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-6 -mt-24 pb-24">
+      <main className="max-w-6xl mx-auto px-6 -mt-36 pb-24">
         {/* Welcome Section */}
         <div className="mb-6 text-white">
           <h2 className="text-3xl font-bold">Bienvenido(a), {user.name}</h2>
@@ -38,7 +38,7 @@ const EstudianteDashboard = ({ user }: EstudianteDashboardProps) => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-800">Derecho Civil I</h4>
-                  <p className="text-sm text-gray-600">Aula Magna</p>
+                  <p className="text-sm text-gray-600">A301AC</p>
                   <p className="text-sm text-gray-500">15 de Octubre, 10:00 AM</p>
                 </div>
               </div>
@@ -55,7 +55,7 @@ const EstudianteDashboard = ({ user }: EstudianteDashboardProps) => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-800">Derecho Penal II</h4>
-                  <p className="text-sm text-gray-600">Sala de Juicios</p>
+                  <p className="text-sm text-gray-600">A102AD</p>
                   <p className="text-sm text-gray-500">22 de Octubre, 09:00 AM</p>
                 </div>
               </div>
@@ -100,7 +100,7 @@ const EstudianteDashboard = ({ user }: EstudianteDashboardProps) => {
                   <p className="text-sm text-gray-500">Publicado: 05 de Octubre</p>
                 </div>
               </div>
-              <div className="text-2xl font-bold text-green-600">9.5</div>
+              <div className="text-2xl font-bold text-[#003366]">4.5</div>
             </div>
 
             {/* Resultado 2 */}
@@ -116,7 +116,7 @@ const EstudianteDashboard = ({ user }: EstudianteDashboardProps) => {
                   <p className="text-sm text-gray-500">Publicado: 01 de Octubre</p>
                 </div>
               </div>
-              <div className="text-2xl font-bold text-green-600">8.0</div>
+              <div className="text-2xl font-bold text-[#003366]">6.0</div>
             </div>
           </div>
         </div>
