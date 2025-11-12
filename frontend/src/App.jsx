@@ -1,8 +1,8 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
-import Evaluaciones from './pages/Evaluaciones';
-import Configuracion from './pages/Configuracion';
+//import Login from './pages/Login';
+//import Dashboard from './pages/Dashboard';
+//import Evaluaciones from './pages/Evaluaciones';
+//import Configuracion from './pages/Configuracion';
 import { authService } from './services/authService';
 
 // Componente para rutas protegidas
