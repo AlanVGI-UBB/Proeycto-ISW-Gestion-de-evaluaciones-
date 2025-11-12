@@ -2,9 +2,9 @@ import api from '../config/axios';
 
 export const authService = {
     // Login
-    login: async (email, password) => {
+    login: async (rut, password) => {
         try {
-            const response = await api.post('/auth/login', { email, password });
+            const response = await api.post('/auth/login', { rut, password });
 
             if (response.data.success) {
                 // Guardar token y usuario en localStorage
