@@ -5,6 +5,7 @@ import Dashboard from './pages/Dashboard';
 import Configuracion from './pages/Configuracion';
 import Evaluaciones from './pages/Evaluaciones';
 import Simulation from './pages/Simulation';
+import RealizacionEvaluacion from './components/RealizarEvaluacion';
 /*import { authService } from './services/authService';*/
 
 // Componente para rutas protegidas
@@ -61,6 +62,16 @@ function App() {
               </ProtectedRoute>
             } 
           />}
+          // ...existing code...
+          {/* Realización de evaluación */}
+          <Route
+            path="/RealizarEvaluacion"
+            element={
+              <ProtectedRoute>
+                <RealizacionEvaluacion />
+              </ProtectedRoute>
+            }
+          />
           <Route 
             path="/Simulation" 
             element={
