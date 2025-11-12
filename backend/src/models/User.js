@@ -9,6 +9,11 @@ export const User = new EntitySchema({
             primary: true,
             generated: true,
         },
+        rut: {
+            type: 'varchar',
+            length: 20,
+            nullable: false,
+        },
         password: {
             type: 'varchar',
             length: 255,
