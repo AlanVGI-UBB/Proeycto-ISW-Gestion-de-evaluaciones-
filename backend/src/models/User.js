@@ -9,12 +9,6 @@ export const User = new EntitySchema({
             primary: true,
             generated: true,
         },
-        email: {
-            type: 'varchar',
-            length: 255,
-            unique: true,
-            nullable: false,
-        },
         password: {
             type: 'varchar',
             length: 255,
@@ -35,18 +29,6 @@ export const User = new EntitySchema({
             length: 50,
             default: 'estudiante',
             nullable: false,
-        },
-        activo: {
-            type: 'boolean',
-            default: true,
-        },
-        createdAt: {
-            type: 'timestamp',
-            createDate: true,
-        },
-        updatedAt: {
-            type: 'timestamp',
-            updateDate: true,
         },
     },
 });
