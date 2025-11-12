@@ -1,14 +1,31 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
+import type { User } from '../types/auth.types';
 
 const Login = () => {
   const [rut, setRut] = useState('');
   const [password, setPassword] = useState('');
+  const [selectedRole, setSelectedRole] = useState<'Estudiante' | 'Profesor' | 'Administrador'>('Estudiante');
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
+  const { loginDev } = useAuth();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Aquí irá la lógica de autenticación
-    console.log('Login:', { rut, password });
+    
+    // Modo desarrollo: permite acceso sin validación
+    const mockUser: User = {
+      id: '1',
+      name: 'Usuario de Prueba',
+      rut: rut || '12345678-9',
+      role: selectedRole
+    };
+
+    const mockToken = 'mock-jwt-token-' + selectedRole;
+    
+    loginDev(mockUser, mockToken);
+    navigate('/dashboard');
   };
 
   return (
@@ -34,6 +51,26 @@ const Login = () => {
 
           {/* Login Form */}
           <form onSubmit={handleSubmit}>
+            {/* Role Selector */}
+            <div className="mb-6">
+              <label 
+                htmlFor="role" 
+                className="block text-gray-700 font-semibold mb-2"
+              >
+                Rol (Desarrollo)
+              </label>
+              <select
+                id="role"
+                value={selectedRole}
+                onChange={(e) => setSelectedRole(e.target.value as 'Estudiante' | 'Profesor' | 'Administrador')}
+                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              >
+                <option value="Estudiante">Estudiante</option>
+                <option value="Profesor">Profesor</option>
+                <option value="Administrador">Administrador</option>
+              </select>
+            </div>
+
             {/* RUT Field */}
             <div className="mb-6">
               <label 
@@ -63,9 +100,8 @@ const Login = () => {
                   id="rut"
                   value={rut}
                   onChange={(e) => setRut(e.target.value)}
-                  placeholder="Ingrese su RUT"
+                  placeholder="Ingrese su RUT (opcional)"
                   className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  required
                 />
               </div>
             </div>
@@ -99,9 +135,8 @@ const Login = () => {
                   id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Ingrese su contraseña"
+                  placeholder="Ingrese su contraseña (opcional)"
                   className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                  required
                 />
                 <button
                   type="button"
