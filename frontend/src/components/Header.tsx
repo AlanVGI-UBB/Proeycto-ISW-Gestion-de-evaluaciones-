@@ -1,4 +1,5 @@
 import { useAuth } from '../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 interface HeaderProps {
   title?: string;
@@ -6,6 +7,7 @@ interface HeaderProps {
 
 const Header = ({ title = 'Facultad de Derecho' }: HeaderProps) => {
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <header className="fixed top-0 left-0 right-0 bg-[#003366] text-white py-4 px-6 z-50 shadow-md">
@@ -19,6 +21,7 @@ const Header = ({ title = 'Facultad de Derecho' }: HeaderProps) => {
         {/* Botón de Configuración */}
         <div className="flex items-center gap-4">
           <button 
+            onClick={() => navigate('/configuracion')}
             className="p-2 hover:bg-[#004488] rounded-lg transition-colors"
             title="Configuración"
           >
