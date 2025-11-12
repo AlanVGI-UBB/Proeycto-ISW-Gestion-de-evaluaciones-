@@ -8,11 +8,7 @@ router.use('/auth', authRoutes);
 
 // Ruta de prueba
 router.get('/health', (req, res) => {
-    res.status(200).json({
-        success: true,
-        message: 'API funcionando correctamente',
-        timestamp: new Date().toISOString(),
-    });
+    res.send({ status: 'OK', message: 'API de Gestión de Evaluaciones Orales funcionando correctamente' });
 });
 
 export default router;
