@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { AppDataSource } from '../config/database.js';
 import { User } from '../models/User.js';
-import { loginValidation } from '../validations/userValidation.js';
+import { registerValidation , loginValidation } from '../validations/userValidation.js';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -22,6 +22,70 @@ const generateToken = (user) => {
     );
 };
 
+// Registro de usuario
+export const register = async (req, res) => {
+    try {
+        // Validar datos de entrada con Joi
+        const { error, value } = registerValidation.validate(req.body);
+
+        if (error) {
+            return res.status(400).json({
+                success: false,
+                message: 'Error de validación',
+                errors: error.details.map(detail => detail.message),
+            });
+        }
+
+        const { rut, password, nombre, apellido, rol } = value;
+
+        // Verificar si el usuario ya existe
+        const existingUser = await userRepository().findOne({ where: { rut } });
+
+        if (existingUser) {
+            return res.status(409).json({
+                success: false,
+                message: 'El rut ya está registrado',
+            });
+        }
+
+        // Encriptar contraseña
+        const hashedPassword = await bcrypt.hash(password, 10);
+
+        // Crear nuevo usuario
+        const newUser = userRepository().create({
+            rut : rut,
+            password: hashedPassword,
+            nombre: nombre || null,
+            apellido: apellido || null,
+            rol: rol || 'estudiante',
+        });
+
+        await userRepository().save(newUser);
+
+        // Generar token
+        const token = generateToken(newUser);
+
+        // Eliminar password de la respuesta
+        const { password: _, ...userWithoutPassword } = newUser;
+
+        res.status(201).json({
+            success: true,
+            message: 'Usuario registrado exitosamente',
+            data: {
+                user: userWithoutPassword,
+                token,
+            },
+        });
+    } catch (error) {
+        console.error('Error en registro:', error);
+        res.status(500).json({
+            success: false,
+            message: 'Error interno del servidor',
+            error: error.message,
+        });
+    }
+};
+
 // Login de usuario
 export const login = async (req, res) => {
     try {
@@ -38,21 +102,13 @@ export const login = async (req, res) => {
 
         const { rut, password } = value;
 
-        // Buscar usuario por email
+        // Buscar usuario por rut
         const user = await userRepository().findOne({ where: { rut } });
 
         if (!user) {
             return res.status(401).json({
                 success: false,
                 message: 'Credenciales inválidas',
-            });
-        }
-
-        // Verificar si el usuario está activo
-        if (!user.activo) {
-            return res.status(403).json({
-                success: false,
-                message: 'Usuario inactivo. Contacte al administrador.',
             });
         }
 
