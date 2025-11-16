@@ -3,8 +3,10 @@ import { AuthProvider } from './context/AuthContext';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Configuracion from './pages/Configuracion';
-/*import Evaluaciones from './pages/Evaluaciones';
-import { authService } from './services/authService';*/
+import Evaluaciones from './pages/Evaluaciones';
+import Simulation from './pages/Simulation';
+import RealizacionEvaluacion from './components/RealizarEvaluacion';
+/*import { authService } from './services/authService';*/
 
 // Componente para rutas protegidas
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
@@ -52,15 +54,32 @@ function App() {
               </ProtectedRoute>
             } 
           />
-          {/*<Route 
+          {<Route 
             path="/evaluaciones" 
             element={
               <ProtectedRoute>
                 <Evaluaciones />
               </ProtectedRoute>
             } 
-          />*/}
-
+          />}
+          // ...existing code...
+          {/* Realización de evaluación */}
+          <Route
+            path="/RealizarEvaluacion"
+            element={
+              <ProtectedRoute>
+                <RealizacionEvaluacion />
+              </ProtectedRoute>
+            }
+          />
+          <Route 
+            path="/Simulation" 
+            element={
+              <ProtectedRoute>
+                <Simulation />
+              </ProtectedRoute>
+            } 
+          />
           {/* Ruta por defecto */}
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>

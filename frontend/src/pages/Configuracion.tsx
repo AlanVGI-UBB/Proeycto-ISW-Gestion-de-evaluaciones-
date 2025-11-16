@@ -59,13 +59,13 @@ const Configuracion = () => {
       {/* Espaciado para el header fijo y bottom navigation */}
       <div className="pt-20 px-6 pb-24 max-w-5xl mx-auto">
         {/* Título de la página */}
-        <div className="mb-8">
+        <div className="mb-4">
           <h2 className="text-4xl font-bold text-[#003366]">Configuración</h2>
         </div>
 
         {/* Tabs */}
-        <div className="bg-white rounded-t-lg shadow-md overflow-hidden">
-          <div className="flex border-b border-gray-200">
+        <div className="bg-white rounded-lg shadow-md overflow-hidden">
+          <div className="flex border-b border-t border-gray-200">
             <button
               onClick={() => setActiveTab('usuario')}
               className={`flex-1 px-6 py-4 text-center font-semibold transition-colors ${
@@ -90,9 +90,9 @@ const Configuracion = () => {
 
           {/* Contenido del Tab Usuario */}
           {activeTab === 'usuario' && (
-            <div className="p-8">
+            <div className="p-4">
               {/* Información del Usuario */}
-              <div className="bg-gray-50 rounded-lg p-6 mb-8">
+              <div className="bg-gray-50 rounded-lg p-6 mb-4">
                 <h3 className="text-2xl font-bold text-gray-800 mb-2">{user.name}</h3>
                 <p className="text-gray-600 mb-1">{getUserEmail()}</p>
                 <p className="text-gray-600 mb-1">
@@ -333,8 +333,8 @@ const Configuracion = () => {
 
           {/* Contenido del Tab Aplicación */}
           {activeTab === 'aplicacion' && (
-            <div className="p-8">
-              <div className="space-y-6">
+            <div className="p-4">
+              <div className="space-y-2">
                 <div>
                   <h4 className="text-lg font-semibold text-gray-800 mb-2">Tema</h4>
                   <select className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#003366]">
@@ -352,7 +352,7 @@ const Configuracion = () => {
                   </select>
                 </div>
 
-                <div className="pt-4">
+                <div className="pt-2">
                   <label className="flex items-center gap-3 cursor-pointer">
                     <input
                       type="checkbox"
@@ -363,7 +363,7 @@ const Configuracion = () => {
                   </label>
                 </div>
 
-                <div className="pt-4">
+                <div className="pt-2">
                   <label className="flex items-center gap-3 cursor-pointer">
                     <input
                       type="checkbox"
@@ -374,8 +374,8 @@ const Configuracion = () => {
                   </label>
                 </div>
 
-                <div className="pt-6 border-t border-gray-200">
-                  <h4 className="text-lg font-semibold text-gray-800 mb-4">Acerca de</h4>
+                <div className="mt-4 pt-2 border-t border-gray-200">
+                  <h4 className="text-lg font-semibold text-gray-800 mb-2">Acerca de</h4>
                   <div className="space-y-2 text-gray-600">
                     <p>
                       <span className="font-semibold">Versión:</span> 1.0.0
