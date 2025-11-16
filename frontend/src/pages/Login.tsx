@@ -8,24 +8,48 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [selectedRole, setSelectedRole] = useState<'Estudiante' | 'Profesor' | 'Administrador'>('Estudiante');
   const [showPassword, setShowPassword] = useState(false);
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const { loginDev } = useAuth();
+  const { login, loginDev } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    // Modo desarrollo: permite acceso sin validación
-    const mockUser: User = {
-      id: '1',
-      name: 'Usuario de Prueba',
-      rut: rut || '12345678-9',
-      role: selectedRole
-    };
+    setError('');
+    setIsLoading(true);
 
-    const mockToken = 'mock-jwt-token-' + selectedRole;
-    
-    loginDev(mockUser, mockToken);
-    navigate('/dashboard');
+    try {
+      // Si ambos campos están vacíos → Modo desarrollo
+      if (!rut.trim() && !password.trim()) {
+        const mockUser: User = {
+          id: '1',
+          name: 'Usuario de Prueba',
+          rut: '12345678-9',
+          role: selectedRole
+        };
+        const mockToken = 'mock-jwt-token-' + selectedRole;
+        
+        loginDev(mockUser, mockToken);
+        navigate('/dashboard');
+        return;
+      }
+
+      // Si alguno de los campos tiene contenido → Login real
+      if (!rut.trim() || !password.trim()) {
+        setError('Por favor ingrese RUT y contraseña');
+        setIsLoading(false);
+        return;
+      }
+
+      // Login con backend
+      await login({ rut: rut.trim(), password: password.trim() });
+      navigate('/dashboard');
+    } catch (err: any) {
+      console.error('Error en login:', err);
+      setError(err.response?.data?.message || 'Error al iniciar sesión. Verifique sus credenciales.');
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -51,13 +75,28 @@ const Login = () => {
 
           {/* Login Form */}
           <form onSubmit={handleSubmit}>
+            {/* Error Message */}
+            {error && (
+              <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+                <p className="text-sm">{error}</p>
+              </div>
+            )}
+
+            {/* Development Mode Notice */}
+            <div className="mb-6 p-3 bg-blue-50 border border-blue-200 rounded-lg">
+              <p className="text-xs text-blue-700">
+                <strong>Modo desarrollo:</strong> Deje los campos vacíos para acceso rápido, 
+                o ingrese credenciales para login real.
+              </p>
+            </div>
+
             {/* Role Selector */}
             <div className="mb-6">
               <label 
                 htmlFor="role" 
                 className="block text-gray-700 font-semibold mb-2"
               >
-                Rol (Desarrollo)
+                Rol (Solo para modo desarrollo)
               </label>
               <select
                 id="role"
@@ -77,7 +116,7 @@ const Login = () => {
                 htmlFor="rut" 
                 className="block text-gray-700 font-semibold mb-2"
               >
-                RUT
+                RUT <span className="text-gray-500 font-normal text-sm">(vacío = modo desarrollo)</span>
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -100,7 +139,7 @@ const Login = () => {
                   id="rut"
                   value={rut}
                   onChange={(e) => setRut(e.target.value)}
-                  placeholder="Ingrese su RUT (opcional)"
+                  placeholder="Ej: 12345678-9"
                   className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
               </div>
@@ -112,7 +151,7 @@ const Login = () => {
                 htmlFor="password" 
                 className="block text-gray-700 font-semibold mb-2"
               >
-                Contraseña
+                Contraseña <span className="text-gray-500 font-normal text-sm">(vacío = modo desarrollo)</span>
               </label>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -135,7 +174,7 @@ const Login = () => {
                   id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Ingrese su contraseña (opcional)"
+                  placeholder="Ingrese su contraseña"
                   className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                 />
                 <button
@@ -185,9 +224,20 @@ const Login = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-[#003366] text-white font-semibold py-3 rounded-lg hover:bg-[#004488] transition-colors duration-200"
+              disabled={isLoading}
+              className="w-full bg-[#003366] text-white font-semibold py-3 rounded-lg hover:bg-[#004488] transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed flex items-center justify-center"
             >
-              Iniciar sesión
+              {isLoading ? (
+                <>
+                  <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                  </svg>
+                  Iniciando sesión...
+                </>
+              ) : (
+                'Iniciar sesión'
+              )}
             </button>
           </form>
         </div>
