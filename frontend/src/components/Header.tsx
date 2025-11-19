@@ -10,7 +10,7 @@ const Header = ({ title = 'Facultad de Derecho' }: HeaderProps) => {
   const navigate = useNavigate();
 
   return (
-    <header className="fixed top-0 left-0 right-0 bg-[#003366] text-white py-4 px-6 z-50 rounded-b-lg">
+    <header className="fixed top-0 left-0 right-0 bg-[#003366] text-white py-4 px-6 z-50">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Logo y Título */}
         <div className="flex items-center">

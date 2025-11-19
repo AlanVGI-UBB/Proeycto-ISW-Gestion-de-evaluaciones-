@@ -13,10 +13,14 @@ const EstudianteDashboard = ({ user }: EstudianteDashboardProps) => {
       <Header />
 
       {/* Background azul que se extiende */}
-      <div className="bg-[#003366] h-60 rounded-b-lg"></div>
+      <div className="bg-[#003366] h-60"></div>
+
+      <div className="sticky top-18 z-0 bg-[#003366]">
+        <div className="h-3 bg-gray-100 rounded-t-3xl mx-auto"></div>
+      </div>
 
       {/* Main Content */}
-      <main className="max-w-6xl mx-auto px-6 -mt-36 pb-24">
+      <main className="relative z-10 bg-[#003366] max-w-6xl mx-auto px-6 -mt-36 pb-24">
         {/* Welcome Section */}
         <div className="mb-6 text-white">
           <h2 className="text-3xl font-bold">Bienvenido(a), {user.name}</h2>
