@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react';
+import Header from '../components/Header';
 
 type Question = { id: string; text: string; topic: string };
 type Criterion = {
@@ -21,7 +22,7 @@ export default function RealizacionEvaluacion() {
     { id: 'q4', text: 'Análisis de cláusula abusiva en contratos de adhesión.', topic: 'Derecho Civil - Contratos' },
   ];
 
-  // Inicializar pauta (podría venir del servidor)
+  // Inicializar pauta (viene de otra fuente en producción)
   const [criteria, setCriteria] = useState<Criterion[]>([
     { id: 'c1', name: 'Claridad expositiva', description: 'Orden y claridad en la respuesta', maxScore: 3, score: null },
     { id: 'c2', name: 'Rigor jurídico', description: 'Uso correcto de normas y doctrina', maxScore: 4, score: null },
@@ -55,7 +56,7 @@ export default function RealizacionEvaluacion() {
     setTimeout(() => setToast(null), 2500);
   }
 
-  function updateScore(index: number, value: number | '') {
+  function ActualizarPuntaje(index: number, value: number | '') {
     setCriteria((prev) =>
       prev.map((c, i) =>
         i === index
@@ -66,7 +67,7 @@ export default function RealizacionEvaluacion() {
     setSaved(false);
   }
 
-  function saveProgress() {
+  function guardarProgreso() {
     setSaving(true);
     // Simular petición
     setTimeout(() => {
@@ -77,7 +78,7 @@ export default function RealizacionEvaluacion() {
     }, 900);
   }
 
-  function finalizeEvaluation() {
+  function finalizeEvaluacion() {
     // Validación básica: todos los criterios deben tener un score numérico
     const incomplete = criteria.some((c) => c.score === null);
     if (incomplete) {
@@ -96,9 +97,8 @@ export default function RealizacionEvaluacion() {
 
   return (
     <div className="max-w-7xl mx-auto p-6 font-sans text-gray-800">
-      {/* Header / Breadcrumb */}
+      <Header title="Facultad de Derecho" />
       <div className="mb-6">
-        <nav className="text-sm text-gray-500 mb-2">Inicio &gt; Evaluaciones &gt; {evaluation.name} &gt; Realización</nav>
         <h1 className="text-2xl font-semibold text-gray-900">Realización de Evaluación</h1>
         <p className="text-sm text-gray-600">Evaluación de <span className="font-medium">{student.name}</span> — Tema: <span className="font-medium">{student.topic}</span></p>
       </div>
@@ -119,7 +119,7 @@ export default function RealizacionEvaluacion() {
                   className="inline-flex items-center gap-2 px-3 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-300"
                   aria-label="Generar pregunta aleatoria"
                 >
-                  🎲 Generar pregunta
+                  Generar pregunta
                 </button>
               </div>
             </div>
@@ -142,7 +142,7 @@ export default function RealizacionEvaluacion() {
             <div className="text-sm text-gray-600">Puedes tomar notas rápidas sobre el desempeño del alumno durante la exposición.</div>
             <textarea
               className="mt-3 w-full border rounded p-3 text-sm resize-y min-h-[100px] focus:ring-2 focus:ring-indigo-200"
-              placeholder="Apunta observaciones relevantes..."
+              placeholder="Observaciones relevantes"
               value={feedback}
               onChange={(e) => { setFeedback(e.target.value); setSaved(false); }}
               disabled={completed}
@@ -172,23 +172,23 @@ export default function RealizacionEvaluacion() {
 
                     <div className="mt-2 flex items-center gap-2">
                       <input
-                        type="number"
-                        min={0}
-                        max={c.maxScore}
-                        value={c.score === null ? '' : c.score}
-                        onChange={(e) => updateScore(i, e.target.value === '' ? '' : Number(e.target.value))}
-                        className="w-20 border rounded px-2 py-1 text-sm focus:ring-2 focus:ring-indigo-200"
-                        disabled={completed}
-                        aria-label={`Puntaje ${c.name}`}
-                      />
-                      <input
                         type="range"
                         min={0}
                         max={c.maxScore}
                         value={c.score === null ? 0 : c.score}
-                        onChange={(e) => updateScore(i, Number(e.target.value))}
+                        onChange={(e) => ActualizarPuntaje(i, Number(e.target.value))}
                         className="w-full"
                         disabled={completed}
+                      />
+                      <input
+                        type="number"
+                        min={0}
+                        max={c.maxScore}
+                        value={c.score === null ? '' : c.score}
+                        onChange={(e) => ActualizarPuntaje(i, e.target.value === '' ? '' : Number(e.target.value))}
+                        disabled={completed}
+                        className="w-20 border rounded px-2 py-1 text-sm focus:ring-2 focus:ring-indigo-200"
+                        aria-label={`Puntaje ${c.name}`}
                       />
                     </div>
                   </div>
@@ -198,14 +198,14 @@ export default function RealizacionEvaluacion() {
 
             <div className="mt-4 flex gap-2">
               <button
-                onClick={saveProgress}
+                onClick={guardarProgreso}
                 disabled={saving || completed}
                 className={`inline-flex items-center gap-2 px-3 py-2 rounded text-white ${saving ? 'bg-gray-400' : 'bg-green-600 hover:bg-green-700'}`}
               >
-                💾 Guardar progreso
+                Guardar progreso
               </button>
               <button
-                onClick={finalizeEvaluation}
+                onClick={finalizeEvaluacion}
                 disabled={saving || completed}
                 className={`ml-auto inline-flex items-center gap-2 px-3 py-2 rounded text-white ${saving ? 'bg-gray-400' : 'bg-indigo-600 hover:bg-indigo-700'}`}
               >
