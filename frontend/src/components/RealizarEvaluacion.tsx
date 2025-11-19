@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import Header from '../components/Header';
+import BottomNavigation from '../components/BottomNavigation';
 
 type Question = { id: string; text: string; topic: string };
 type Criterion = {
@@ -272,6 +273,8 @@ export default function RealizacionEvaluacion() {
           <div className="text-sm">{toast.text}</div>
         </div>
       )}
+
+      <BottomNavigation />
     </div>
   );
 }
