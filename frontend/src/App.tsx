@@ -6,6 +6,7 @@ import Configuracion from './pages/Configuracion';
 import Evaluaciones from './pages/Evaluaciones';
 import Simulation from './pages/Simulation';
 import RealizacionEvaluacion from './components/RealizarEvaluacion';
+import Historial from './pages/Historial';
 /*import { authService } from './services/authService';*/
 
 // Componente para rutas protegidas
@@ -77,6 +78,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Simulation />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/Historial" 
+            element={
+              <ProtectedRoute>
+                <Historial />
               </ProtectedRoute>
             } 
           />
