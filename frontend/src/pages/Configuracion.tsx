@@ -55,16 +55,19 @@ const Configuracion = () => {
   return (
     <div className="min-h-screen bg-gray-100">
       <Header title="Facultad de Derecho" />
-      
+
+      {/* Background azul que se extiende */}
+      <div className="bg-[#003366] h-60"></div>
+
       <div className="sticky top-18 z-0 bg-[#003366]">
         <div className="h-3 bg-gray-100 rounded-t-3xl mx-auto"></div>
       </div>
 
-      {/* Espaciado para el header fijo y bottom navigation */}
-      <div className="pt-20 px-6 pb-24 max-w-5xl mx-auto">
-        {/* Título de la página */}
-        <div className="mb-4">
-          <h2 className="text-4xl font-bold text-[#003366]">Configuración</h2>
+      {/* Contenido principal sobre el fondo */}
+      <main className="relative z-10 max-w-5xl mx-auto px-6 -mt-36 pb-24">
+        {/* Título sobre el fondo azul */}
+        <div className="mb-6 text-white">
+          <h2 className="text-4xl font-bold">Configuración</h2>
         </div>
 
         {/* Tabs */}
@@ -396,7 +399,7 @@ const Configuracion = () => {
             </div>
           )}
         </div>
-      </div>
+      </main>
 
       <BottomNavigation />
     </div>
