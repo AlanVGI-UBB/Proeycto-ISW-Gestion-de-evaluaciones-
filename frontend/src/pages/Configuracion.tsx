@@ -56,6 +56,10 @@ const Configuracion = () => {
     <div className="min-h-screen bg-gray-100">
       <Header title="Facultad de Derecho" />
       
+      <div className="sticky top-18 z-0 bg-[#003366]">
+        <div className="h-3 bg-gray-100 rounded-t-3xl mx-auto"></div>
+      </div>
+
       {/* Espaciado para el header fijo y bottom navigation */}
       <div className="pt-20 px-6 pb-24 max-w-5xl mx-auto">
         {/* Título de la página */}
@@ -378,7 +382,7 @@ const Configuracion = () => {
                   <h4 className="text-lg font-semibold text-gray-800 mb-2">Acerca de</h4>
                   <div className="space-y-2 text-gray-600">
                     <p>
-                      <span className="font-semibold">Versión:</span> 1.0.0
+                      <span className="font-semibold">Versión:</span> 0.0.1
                     </p>
                     <p>
                       <span className="font-semibold">Sistema:</span> Gestión de Evaluaciones Orales
