@@ -20,7 +20,7 @@ const EstudianteDashboard = ({ user }: EstudianteDashboardProps) => {
       </div>
 
       {/* Main Content */}
-      <main className="relative z-10 bg-[#003366] max-w-6xl mx-auto px-6 -mt-36 pb-24">
+      <main className="relative z-10 max-w-6xl mx-auto px-6 -mt-36 pb-24">
         {/* Welcome Section */}
         <div className="mb-6 text-white">
           <h2 className="text-3xl font-bold">Bienvenido(a), {user.name}</h2>
