@@ -78,17 +78,15 @@ const EstudianteDashboard = ({ user }: EstudianteDashboardProps) => {
             simulados.
           </p>
 
-          <Link
-            to="/Simulation"
-            className="bg-[#003366] text-white px-6 py-3 rounded-lg hover:bg-[#004488] transition-colors font-semibold"
-          >
-            Practicar ahora
-          </Link>
+          <Link to="/Simulation" className="bg-[#003366] text-white px-6 py-3 rounded-lg hover:bg-[#004488] transition-colors font-semibold"> Practicar ahora</Link>
         </div>
 
         {/* Resultados Recientes */}
         <div className="bg-white rounded-lg shadow-md p-6">
-          <h3 className="text-xl font-bold text-gray-800 mb-4">Resultados Recientes</h3>
+          <div className="flex justify-between items-center mb-4">
+            <h3 className="text-xl font-bold text-gray-800">Resultados Recientes</h3>
+          <Link to="/Historial" className="bg-[#003366] text-white px-6 py-3 rounded-lg hover:bg-[#004488] transition-colors font-semibold"> Ver Historial Completo </Link>
+          </div>
           
           <div className="space-y-4">
             {/* Resultado 1 */}
