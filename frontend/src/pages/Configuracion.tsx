@@ -56,7 +56,10 @@ const Configuracion = () => {
   return (
     <div className="min-h-screen bg-gray-100">
       <Header title="Facultad de Derecho" />
-      
+
+      {/* Background azul que se extiende */}
+      <div className="bg-[#003366] h-60"></div>
+
       <div className="sticky top-18 z-0 bg-[#003366]">
         <div className="h-3 bg-gray-100 rounded-t-3xl mx-auto"></div>
       </div>
@@ -395,7 +398,7 @@ const Configuracion = () => {
             </div>
           )}
         </div>
-      </div>
+      </main>
 
       <BottomNavigation />
     </div>
