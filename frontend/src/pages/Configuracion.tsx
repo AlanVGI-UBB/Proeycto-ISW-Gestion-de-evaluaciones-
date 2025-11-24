@@ -11,8 +11,8 @@ const Configuracion = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<TabType>('usuario');
   const [telefono, setTelefono] = useState('+56 9 1234 5678');
-  const [correoPersonal, setCorreoPersonal] = useState('juan.perez.g@email.com');
-  const [isEditingTelefono, setIsEditingTelefono] = useState(false);
+  const [correoPersonal, setCorreoPersonal] = useState('juan.perez@ubiobio.cl');
+  const [isEditingTelefono, setIsEditingTelefono] = useState(false );
   const [isEditingCorreo, setIsEditingCorreo] = useState(false);
 
   if (!user) {
@@ -37,9 +37,10 @@ const Configuracion = () => {
   // Datos mock según el rol del usuario
   const getUserEmail = () => {
     if (user.role === 'Profesor') {
-      return 'juan.perez@derecho.edu';
+      return 'juan.perez@ubiobio.cl';
     }
-    return `${user.rut}@estudiante.derecho.edu`;
+    const nameWithoutSpaces = user.name.toLowerCase().replace(/\s+/g, '.');
+    return `${nameWithoutSpaces}@ubiobio.cl`;
   };
 
   const getUserSubject = () => {
@@ -63,15 +64,15 @@ const Configuracion = () => {
         <div className="h-3 bg-gray-100 rounded-t-3xl mx-auto"></div>
       </div>
 
-      {/* Contenido principal sobre el fondo */}
-      <main className="relative z-10 max-w-5xl mx-auto px-6 -mt-36 pb-24">
-        {/* Título sobre el fondo azul */}
-        <div className="mb-6 text-white">
-          <h2 className="text-4xl font-bold">Configuración</h2>
+      {/* Espaciado para el header fijo y bottom navigation */}
+      <div className="relative z-10 pt-20 px-6 pb-24 max-w-5xl mx-auto">
+        {/* Título de la página */}
+        <div className="mb-4">
+          <h2 className="text-4xl font-bold text-[#003366]">Configuración</h2>
         </div>
 
         {/* Tabs */}
-        <div className="bg-white rounded-lg shadow-md overflow-hidden">
+        <div className="relative z-10 bg-white rounded-lg shadow-md overflow-hidden">
           <div className="flex border-b border-t border-gray-200">
             <button
               onClick={() => setActiveTab('usuario')}
@@ -101,15 +102,13 @@ const Configuracion = () => {
               {/* Información del Usuario */}
               <div className="bg-gray-50 rounded-lg p-6 mb-4">
                 <h3 className="text-2xl font-bold text-gray-800 mb-2">{user.name}</h3>
-                <p className="text-gray-600 mb-1">{getUserEmail()}</p>
+                
+                <p className="text-gray-600 mb-1">
+                  <span className="font-semibold">Correo: </span>{getUserEmail()}
+                </p>
                 <p className="text-gray-600 mb-1">
                   <span className="font-semibold">Rol:</span> {user.role}
                 </p>
-                {user.role !== 'Administrador' && (
-                  <p className="text-gray-600">
-                    <span className="font-semibold">Asignatura:</span> {getUserSubject()}
-                  </p>
-                )}
               </div>
 
               {/* Sección de Contacto */}
