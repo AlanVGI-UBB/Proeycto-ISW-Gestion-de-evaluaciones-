@@ -12,7 +12,7 @@ const Configuracion = () => {
   const [activeTab, setActiveTab] = useState<TabType>('usuario');
   const [telefono, setTelefono] = useState('+56 9 1234 5678');
   const [correoPersonal, setCorreoPersonal] = useState('juan.perez@ubiobio.cl');
-  const [isEditingTelefono, setIsEditingTelefono] = useState(false );
+  const [isEditingTelefono, setIsEditingTelefono] = useState(false);
   const [isEditingCorreo, setIsEditingCorreo] = useState(false);
 
   if (!user) {
@@ -76,21 +76,19 @@ const Configuracion = () => {
           <div className="flex border-b border-t border-gray-200">
             <button
               onClick={() => setActiveTab('usuario')}
-              className={`flex-1 px-6 py-4 text-center font-semibold transition-colors ${
-                activeTab === 'usuario'
-                  ? 'bg-white text-[#003366] border-b-2 border-[#003366]'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-50'
-              }`}
+              className={`flex-1 px-6 py-4 text-center font-semibold transition-colors ${activeTab === 'usuario'
+                ? 'bg-white text-[#003366] border-b-2 border-[#003366]'
+                : 'bg-gray-100 text-gray-600 hover:bg-gray-50'
+                }`}
             >
               Usuario
             </button>
             <button
               onClick={() => setActiveTab('aplicacion')}
-              className={`flex-1 px-6 py-4 text-center font-semibold transition-colors ${
-                activeTab === 'aplicacion'
-                  ? 'bg-white text-[#003366] border-b-2 border-[#003366]'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-50'
-              }`}
+              className={`flex-1 px-6 py-4 text-center font-semibold transition-colors ${activeTab === 'aplicacion'
+                ? 'bg-white text-[#003366] border-b-2 border-[#003366]'
+                : 'bg-gray-100 text-gray-600 hover:bg-gray-50'
+                }`}
             >
               Aplicación
             </button>
@@ -102,7 +100,7 @@ const Configuracion = () => {
               {/* Información del Usuario */}
               <div className="bg-gray-50 rounded-lg p-6 mb-4">
                 <h3 className="text-2xl font-bold text-gray-800 mb-2">{user.name}</h3>
-                
+
                 <p className="text-gray-600 mb-1">
                   <span className="font-semibold">Correo: </span>{getUserEmail()}
                 </p>
@@ -398,7 +396,7 @@ const Configuracion = () => {
             </div>
           )}
         </div>
-      </main>
+      </div>
 
       <BottomNavigation />
     </div>
