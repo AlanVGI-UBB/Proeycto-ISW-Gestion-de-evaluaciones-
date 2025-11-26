@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { initializeDatabase } from './src/config/database.js';
 import routes from './src/routes/index.js';
+import questionsRoutes from './src/routes/questions.js';
 
 // Configurar variables de entorno
 dotenv.config();
@@ -26,7 +27,7 @@ app.use((req, res, next) => {
 
 // Rutas
 app.use('/api', routes);
-
+app.use('/api/questions', questionsRoutes);
 // Ruta raíz
 app.get('/', (req, res) => {
     res.send('API de Gestión de Evaluaciones Orales');

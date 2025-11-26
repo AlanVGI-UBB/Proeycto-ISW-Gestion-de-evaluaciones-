@@ -1,13 +1,18 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider } from './context/AuthContext';
-import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
-import Configuracion from './pages/Configuracion';
-import Evaluaciones from './pages/Evaluaciones';
-import Simulation from './pages/Simulation';
-import RealizacionEvaluacion from './components/RealizarEvaluacion';
-import Historial from './pages/Historial';
-/*import { authService } from './services/authService';*/
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import Configuracion from "./pages/Configuracion";
+import Evaluaciones from "./pages/Evaluaciones";
+import Simulation from "./pages/Practice";
+import RealizacionEvaluacion from "./components/RealizarEvaluacion";
+import Historial from "./pages/Historial";
+import SimulationSelect from "./pages/SimulationSelect";
 
 // Componente para rutas protegidas
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
@@ -29,41 +34,41 @@ function App() {
       <Router>
         <Routes>
           {/* Rutas Públicas */}
-          <Route 
-            path="/" 
+          <Route
+            path="/"
             element={
               <PublicRoute>
                 <Login />
               </PublicRoute>
-            } 
+            }
           />
 
           {/* Rutas Protegidas */}
-          <Route 
-            path="/dashboard" 
+          <Route
+            path="/dashboard"
             element={
               <ProtectedRoute>
                 <Dashboard />
               </ProtectedRoute>
-            } 
+            }
           />
-          <Route 
-            path="/configuracion" 
+          <Route
+            path="/configuracion"
             element={
               <ProtectedRoute>
                 <Configuracion />
               </ProtectedRoute>
-            } 
+            }
           />
-          {<Route 
-            path="/evaluaciones" 
+          <Route
+            path="/evaluaciones"
             element={
               <ProtectedRoute>
                 <Evaluaciones />
               </ProtectedRoute>
-            } 
-          />}
-          // ...existing code...
+            }
+          />
+
           {/* Realización de evaluación */}
           <Route
             path="/RealizarEvaluacion"
@@ -73,22 +78,34 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route 
-            path="/Simulation" 
+
+          {/* Simulación */}
+          <Route
+            path="/simulation/practica/:id"
             element={
               <ProtectedRoute>
                 <Simulation />
               </ProtectedRoute>
-            } 
+            }
           />
-          <Route 
-            path="/Historial" 
+          <Route
+            path="/simulationSelect"
+            element={
+              <ProtectedRoute>
+                <SimulationSelect />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/Historial"
             element={
               <ProtectedRoute>
                 <Historial />
               </ProtectedRoute>
-            } 
+            }
           />
+
           {/* Ruta por defecto */}
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
